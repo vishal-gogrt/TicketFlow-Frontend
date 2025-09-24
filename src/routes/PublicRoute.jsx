@@ -8,13 +8,13 @@ import { Navigate, Outlet } from "react-router-dom";
  * If already logged in, redirect to the appropriate area.
  */
 export default function PublicRoute() {
-  const { token, role } = useSelector((state) => state.auth);
+  const { token, user } = useSelector((state) => state.auth);
 
   if (token) {
     // Redirect logged-in user according to role
-    if (role === "admin" || role === "support")
+    if (user?.platformRole === "admin" || user?.platformRole === "support" || user?.platformRole === "super")
       return <Navigate to="/dashboard" replace />;
-    if (role === "customer") return <Navigate to="/customer" replace />;
+    if (user?.platformRole === "customer") return <Navigate to="/customer" replace />;
     // fallback
     return <Navigate to="/" replace />;
   }
