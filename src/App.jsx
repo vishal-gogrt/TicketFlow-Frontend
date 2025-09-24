@@ -16,6 +16,7 @@ import Signup from "./pages/Public/Signup";
 
 import Overview from "./pages/Dashboard/Overview";
 import Users from "./pages/Dashboard/Users";
+import Organization from "./pages/Dashboard/Organization";
 
 import CustomerHome from "./pages/Customer/CustomerHome";
 import CustomerTickets from "./pages/Customer/CustomerTickets";
@@ -49,6 +50,7 @@ export default function App() {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<Overview />} />
           <Route path="users" element={<Users />} />
+          <Route path="organization" element={<Organization />} />
           {/* /dashboard/users */}
         </Route>
       </Route>

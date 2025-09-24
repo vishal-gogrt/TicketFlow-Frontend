@@ -1,0 +1,110 @@
+  <div className="space-y-8">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-6 sm:space-y-0">
+        <div>
+          <h2 className="text-3xl font-bold text-slate-900">
+            Organization Management
+          </h2>
+          <p className="text-slate-600 mt-2">Manage all your organizations</p>
+        </div>
+        <button
+          onClick={() => setShowAddOrgModal(true)}
+          className="inline-flex items-center px-6 py-3 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-200"
+        >
+          <Plus className="h-5 w-5 mr-2" />
+          Add Organization
+        </button>
+      </div>
+
+      {/* Search */}
+      <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl shadow-sm border border-slate-200/60">
+        <div className="relative">
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5" />
+          <input
+            type="text"
+            placeholder="Search organizations..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full pl-12 pr-4 py-3 border border-slate-200 rounded-xl bg-white/50 focus:ring-2 focus:ring-green-500/20 focus:border-green-300 transition-all placeholder-slate-400"
+          />
+        </div>
+      </div>
+
+      {/* Grid */}
+      {loading ? (
+        <Spinner message="Fetching organizations, please wait..." />
+      ) : filteredOrganizations.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredOrganizations.map((org) => (
+            <div
+              key={org._id}
+              className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-slate-200/60 p-6 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300 group"
+            >
+              {/* Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="text-xl font-semibold text-slate-900">
+                    {org.name}
+                  </h3>
+                  <div className="flex items-center text-sm text-slate-500 mt-1">
+                    <Shield className="h-4 w-4 mr-1 text-green-600" />
+                    {org.owner?.name} ({org.owner?.email})
+                  </div>
+                </div>
+                <button className="p-2 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100 opacity-0 group-hover:opacity-100 transition">
+                  <MoreHorizontal className="h-4 w-4" />
+                </button>
+              </div>
+
+              {/* Meta */}
+              <div className="text-sm text-slate-500 flex items-center mb-2">
+                <UsersIcon className="h-4 w-4 mr-1" />
+                {org.users.length} member{org.users.length !== 1 && "s"}
+              </div>
+
+              <div className="text-sm text-slate-500 flex items-center mb-4">
+                <Calendar className="h-4 w-4 mr-1" />
+                Created{" "}
+                {org.createdAt ? formatDate(new Date(org.createdAt)) : "N/A"}
+              </div>
+
+              {/* Invite Button */}
+              <button
+                onClick={() => setInviteOrgId(org._id)}
+                className="mt-2 text-sm text-green-700 font-medium bg-green-50 border border-green-200 rounded-lg px-3 py-2 hover:bg-green-100 transition"
+              >
+                Invite User
+              </button>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-12">
+          <div className="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <UsersIcon className="h-12 w-12 text-slate-400" />
+          </div>
+          <h3 className="text-lg font-medium text-slate-900 mb-2">
+            No organizations found
+          </h3>
+          <p className="text-slate-500 mb-6">Try adjusting your search</p>
+          <button
+            onClick={() => setShowAddOrgModal(true)}
+            className="inline-flex items-center px-4 py-2 border border-transparent rounded-lg text-sm font-medium text-white bg-green-600 hover:bg-green-700 transition-colors"
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            Add Organization
+          </button>
+        </div>
+      )}
+
+      {/* Modals */}
+      {showAddOrgModal && (
+        <AddOrgForm onCancel={() => setShowAddOrgModal(false)} onSuccess={handleAddOrg} />
+      )}
+      {inviteOrgId && (
+        <InviteUserModal
+          orgId={inviteOrgId}
+          onClose={() => setInviteOrgId(null)}
+        />
+      )}
+    </div>

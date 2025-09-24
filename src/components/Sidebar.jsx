@@ -11,7 +11,7 @@ export default function Sidebar() {
 
   const links = [
     { to: "/dashboard", label: "Dashboard", icon: Home },
-    { to: "/organization", label: "Organization", icon: Building2 },
+    { to: "/dashboard/organization", label: "Organization", icon: Building2 },
     { to: "/teams", label: "Teams", icon: Users },
     { to: "/tickets", label: "Tickets", icon: Ticket },
     { to: "/calendar", label: "Calendar", icon: Calendar },
