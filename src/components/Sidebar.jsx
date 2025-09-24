@@ -18,9 +18,9 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 min-h-screen flex flex-col">
+    <aside className="w-64 theme-bg-primary theme-border border-r min-h-screen flex flex-col">
       {/* Logo */}
-      <div className="p-6 text-2xl font-bold text-blue-600 dark:text-blue-400">
+      <div className="p-6 text-2xl font-bold text-blue-600">
         KwicpeFlow
       </div>
 
@@ -33,8 +33,8 @@ export default function Sidebar() {
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2 rounded-lg transition ${
                 isActive
-                  ? "bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300"
-                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  ? "bg-blue-100 text-blue-600"
+                  : "theme-text-primary theme-bg-hover"
               }`
             }
           >
