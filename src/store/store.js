@@ -40,5 +40,24 @@ store.subscribe(() => {
   }
 });
 
+// Development: Add mock user for testing (remove in production)
+if (process.env.NODE_ENV === 'development') {
+  const state = store.getState();
+  if (!state.auth.token) {
+    store.dispatch({
+      type: 'auth/login/fulfilled',
+      payload: {
+        user: {
+          name: 'Dev User',
+          email: 'dev@example.com',
+          platformRole: 'super', // This allows access to dashboard routes
+          _id: 'dev-user-123'
+        },
+        token: 'dev-token-123'
+      }
+    });
+  }
+}
+
 export const persistor = persistStore(store);
 export default store;
