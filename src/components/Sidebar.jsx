@@ -14,7 +14,7 @@ export default function Sidebar() {
     { to: "/dashboard/organization", label: "Organization", icon: Building2 },
     { to: "/teams", label: "Teams", icon: Users },
     { to: "/dashboard/tickets", label: "Tickets", icon: Ticket },
-    { to: "/calendar", label: "Calendar", icon: Calendar },
+    { to: "/dashboard/calendar", label: "Calendar", icon: Calendar },
   ];
 
   return (
