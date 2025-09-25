@@ -19,6 +19,7 @@ import Users from "./pages/Dashboard/Users";
 import Organization from "./pages/Dashboard/Organization";
 import Tickets from "./pages/Dashboard/Tickets";
 import Calendar from "./pages/Dashboard/Calendar";
+import Merchants from "./pages/Dashboard/Merchants";
 
 import CustomerHome from "./pages/Customer/CustomerHome";
 import CustomerTickets from "./pages/Customer/CustomerTickets";
@@ -53,6 +54,7 @@ export default function App() {
           <Route index element={<Overview />} />
           <Route path="users" element={<Users />} />
           <Route path="organization" element={<Organization />} />
+          <Route path="merchants" element={<Merchants />} />
           <Route path="tickets" element={<Tickets />} />
           <Route path="calendar" element={<Calendar />} />
           {/* /dashboard/users */}
