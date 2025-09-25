@@ -2,7 +2,7 @@
 // src/components/Sidebar.jsx
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Home, Users, Ticket, Calendar, LogOut, Building2 } from "lucide-react";
+import { Home, Users, Ticket, Calendar, LogOut, Building2, Store } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { logout } from "../store/authSlice";
 
@@ -12,6 +12,7 @@ export default function Sidebar() {
   const links = [
     { to: "/dashboard", label: "Dashboard", icon: Home },
     { to: "/dashboard/organization", label: "Organization", icon: Building2 },
+    { to: "/dashboard/merchants", label: "Merchants", icon: Store },
     { to: "/dashboard/users", label: "Users", icon: Users },
     { to: "/dashboard/tickets", label: "Tickets", icon: Ticket },
     { to: "/dashboard/calendar", label: "Calendar", icon: Calendar },
